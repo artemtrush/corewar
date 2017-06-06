@@ -53,6 +53,7 @@ $(NAME): $(OBJ) $(INC)
 
 $(LIB):
 	@make -C $(LIB_DIR)
+
 $(PTF):
 	@make -C $(PTF_DIR)
 

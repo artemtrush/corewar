@@ -33,3 +33,13 @@
 #include <../../libft/inc/libft.h>
 #include <../../ft_printf/ft_printf.h>
 #include <../../inc/op.h>
+
+
+
+
+typedef struct	s_data
+{
+	
+
+	
+}				t_data;

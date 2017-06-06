@@ -12,8 +12,27 @@
 
 #include "corewar.h"
 
-int main(int ar, char **av)
+void		ft_destruct(t_data *data)
 {
-	ft_printf("dick\n");
-	return 0;
+	ft_memdel((void **)&data);
+}
+
+static void	ft_usage(void)
+{
+	ft_printf("usage:\n./corewar [-dump nbr_cycles] \
+	[[-n number] champion1.cor] ...");
+}
+
+int			main(int ar, char **av)
+{
+	t_data data;
+
+	if (ar > 2)
+	{
+		read_flags(av);
+		;
+	}
+	else
+		ft_usage();
+	return (0);
 }
