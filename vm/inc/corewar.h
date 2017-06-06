@@ -39,7 +39,7 @@
 
 typedef struct	s_data
 {
-	
+	int 		flags_dump;	
 
 	
 }				t_data;
