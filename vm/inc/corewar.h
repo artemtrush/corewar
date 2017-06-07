@@ -25,7 +25,7 @@
 */
 
 /* DO LIST:
-**
+** init 
 **
 **
 */
@@ -41,14 +41,8 @@ typedef struct	s_data
 {
 	int 		flags_dump;
 	int			dump_arg;
-
-	
+		
 }				t_data;
 
-
-
-
-
-
-void		init_data(t_data *data);
-void		destruct(t_data *data);
+void			init_data(t_data *data);
+void			destruct(t_data *data);

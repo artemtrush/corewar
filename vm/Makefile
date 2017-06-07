@@ -38,7 +38,7 @@ SRC_DIR =	src
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
 SRC_NAME =			main.c		\
 					destruct.c	\
-					init_data.c
+					init_data.c \
 # add .c file ---->
 
 ################################################################################

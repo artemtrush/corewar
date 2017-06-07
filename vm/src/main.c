@@ -55,10 +55,10 @@ void		read_flags(t_data *data, char **av, int ar)
 {
 	int		i;
 
-	i = 0;
-	while (++i < ar)
+	i = 1;
+	while (i < ar)
 	{
-		if (*av[i] == '-')
+		if (av[i][0] == '-')
 		{
 			if (!ft_strcmp("-dump", av[i]))
 			{
@@ -66,10 +66,13 @@ void		read_flags(t_data *data, char **av, int ar)
 				read_dump_arg(data, av[i + 1]);
 			}
 		}
+		else
+		{
+			exit_error();
+		}
+		++i;
 	}
 }
-
-
 
 int			main(int ar, char **av)
 {
@@ -81,7 +84,7 @@ int			main(int ar, char **av)
 		init_data(&data);
 		read_flags(&data, av, ar);
 	}
-	else
+	else /// @todo: print usage if flag is shitfull
 		ft_usage();
 	return (0);
 }

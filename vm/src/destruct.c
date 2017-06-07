@@ -14,5 +14,12 @@
 
 void		destruct(t_data *data)
 {
-	;
+
+}
+
+void		exit_error(t_data *data)
+{
+	destruct(data);
+	printf("ERROR\n"); // ft_
+	exit(0);
 }
