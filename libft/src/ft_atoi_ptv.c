@@ -1,54 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_atoi_ptv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/05 19:27:53 by ochayche          #+#    #+#             */
-/*   Updated: 2017/06/05 19:27:54 by ochayche         ###   ########.fr       */
+/*   Created: 2017/06/07 11:47:50 by ochayche          #+#    #+#             */
+/*   Updated: 2017/06/07 11:47:51 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*		allowed function:
-**		open
-**		read
-**		lseek
-**		write
-**		close
-**		malloc
-**		realloc
-**		free
-**		perror
-**		strerror
-**		exit
-*/
+#include "../inc/libft.h"
 
-/* DO LIST:
-**
-**
-**
-*/
-
-#include <../../libft/inc/libft.h>
-#include <../../ft_printf/ft_printf.h>
-#include <../../inc/op.h>
-
-
-
-
-typedef struct	s_data
+int			ft_atoi_ptv(char *str)
 {
-	int 		flags_dump;
-	int			dump_arg;
+	int	i;
+	int	res;
 
-	
-}				t_data;
-
-
-
-
-
-
-void		init_data(t_data *data);
-void		destruct(t_data *data);
+	i = 0;
+	res = 0;
+	if (!ft_isdigit(str[i]))
+		return (-1);
+	while (ft_isdigit(str[i]))
+	{
+		if (res > 214748364 || (res == 214748364 && str[i] >= '8'))
+			return (-1);
+		res = res * 10 + str[i] - '0';
+		++i;
+	}
+	return (res);
+}

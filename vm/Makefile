@@ -36,7 +36,9 @@ OBJ = $(subst .c,.o,$(subst $(SRC_DIR)/,$(OBJ_DIR)/,$(SRC)))
 #********* -SRC
 SRC_DIR =	src
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
-SRC_NAME =			main.c \
+SRC_NAME =			main.c		\
+					destruct.c	\
+					init_data.c
 # add .c file ---->
 
 ################################################################################
@@ -75,3 +77,6 @@ fclean: clean
 	rm -f $(PTF_DIR)/$(PTF)
 
 re: fclean all
+
+r:	$(NAME)
+	./$(NAME) -dump

@@ -98,7 +98,8 @@ OBJ_NAME = ft_memset.o \
 	ft_atohex.o \
 	ft_max.o \
 	ft_atol.o \
-	q_sort.o
+	q_sort.o \
+	ft_atoi_ptv.o
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_NAME))
 
