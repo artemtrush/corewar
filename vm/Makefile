@@ -14,8 +14,8 @@ CC = gcc
 # CFLAGS = -Wall -Wextra -Werror
 SHELL = /bin/sh
 
-LIB_DIR = ../libft
-PTF_DIR = ../ft_printf
+LIB_DIR = ../inc/libft
+PTF_DIR = ../inc/ft_printf
 LIB = 	libft.a
 PTF =	libftprintf.a
 
@@ -78,5 +78,17 @@ fclean: clean
 
 re: fclean all
 
+
+
+
+
+##############
+# dell 
+
+lite_clean:
+	rm -rf $(OBJ_DIR)
+
+rew: lite_clean $(NAME);
+	
 r:	$(NAME)
 	./$(NAME) -dump

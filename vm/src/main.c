@@ -18,27 +18,6 @@ static void	ft_usage(void)
 	[[-n number] champion1.cor] ...\n");
 }
 
-int			ft_atoi_ptv(char *str)
-{
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 0;
-	if (!ft_isdigit(str[i]))
-		return (-1);
-	while (ft_isdigit(str[i]))
-	{
-		if (res > 214748364 || (res == 214748364 && str[i] >= '8'))
-			return (-1);
-		res = res * 10 + str[i] - '0';
-		++i;
-	}
-	return (res);
-}
-
-
-
 void		read_dump_arg(t_data *data, char *av)
 {	
 	if (av)
@@ -51,6 +30,11 @@ void		read_dump_arg(t_data *data, char *av)
 }
 
 
+/*
+**	read_flags() -- read flags from all $valid_position in STDIN
+**	read arguments followed by $valid_position
+*/
+
 void		read_flags(t_data *data, char **av, int ar)
 {
 	int		i;
@@ -62,14 +46,14 @@ void		read_flags(t_data *data, char **av, int ar)
 		{
 			if (!ft_strcmp("-dump", av[i]))
 			{
-				ft_printf("zawlo!\n");
+				ft_printf("zawlo!\n"); //dell
 				read_dump_arg(data, av[i + 1]);
 			}
 		}
-		else
-		{
-			exit_error();
-		}
+		// else  // dell
+		// {
+		// 	exit_error();
+		// }
 		++i;
 	}
 }

@@ -30,9 +30,12 @@
 **
 */
 
-#include <../../libft/inc/libft.h>
-#include <../../ft_printf/ft_printf.h>
+#include <../../inc/libft/inc/libft.h>
+#include <../../inc/ft_printf/ft_printf.h>
 #include <../../inc/op.h>
+
+
+#include <stdio.h> // dell
 
 
 
