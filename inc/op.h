@@ -23,9 +23,9 @@
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4
-# define MEM_SIZE				(4*1024)
-# define IDX_MOD				(MEM_SIZE / 8) // площадь игрока
-# define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+# define MEM_SIZE				(4*1024) // 4096
+# define IDX_MOD				(MEM_SIZE / 8) // 512 площадь игнового поля игрока?
+# define CHAMP_MAX_SIZE			(MEM_SIZE / 6) // 682
 
 # define COMMENT_CHAR			'#'
 # define LABEL_CHAR				':'
