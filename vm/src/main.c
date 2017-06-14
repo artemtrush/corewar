@@ -14,28 +14,44 @@
 
 static void	ft_usage(void)
 {
-	ft_printf("usage:\n./corewar [-dump nbr_cycles] \
-	[[-n number] champion1.cor] ...\n");
+	ft_printf(USAGE);
+	exit(1);
 }
 
-void		read_dump_arg(t_data *data, char *av)
+static void		read_dump_arg(t_data *data, char *av)
 {	
-	if (av)
-		data->dump_arg = ft_atoi_ptv(av);
-	if (data->dump_arg == -1)
+	if (av && data->dump_arg == -2)
+	{
+		if ((data->dump_arg = ft_atoi_ptv(av)) == -1)
+			ft_usage();
+	}
+	else
 	{
 		ft_usage();
-		exit(1);
-	}	
+	}
 }
-
 
 /*
 **	read_flags() -- read flags from all $valid_position in STDIN
-**	read arguments followed by $valid_position
+**	read $flags_arguments followed by $valid_position
 */
 
-void		read_flags(t_data *data, char **av, int ar)
+void		read_flags(t_data *data, char **av, int ar, int *i)
+{
+	if (!ft_strcmp("-dump", av[*i])) // read -dump flag + dump_arg
+	{
+		read_dump_arg(data, av[++(*i)]);
+	}
+	else if (('1' < av[*i][1] && av[*i][1] < '4') && (av[*i][2] == '\0'))
+	{
+		read_player(data, av[*i], ft_atoi(av[*i]));
+		//read_player(data, av[*i], ft_atoi(av[++(*i)])); how we should read [-n number]?
+	}
+	else
+		ft_usage(); // if flag shitfull
+}
+
+void		read_args(t_data *data, char **av, int ar)
 {
 	int		i;
 
@@ -44,31 +60,24 @@ void		read_flags(t_data *data, char **av, int ar)
 	{
 		if (av[i][0] == '-')
 		{
-			if (!ft_strcmp("-dump", av[i]))
-			{
-				ft_printf("zawlo!\n"); //dell
-				read_dump_arg(data, av[i + 1]);
-			}
+			read_flags(data, av, ar, &i);
 		}
-		// else  // dell
-		// {
-		// 	exit_error();
-		// }
+		else
+			read_player(data, av[i], -1); //
 		++i;
 	}
 }
 
 int			main(int ar, char **av)
 {
-
 	t_data data;
 
 	if (ar > 1)
 	{
 		init_data(&data);
-		read_flags(&data, av, ar);
+		read_args(&data, av, ar);
 	}
-	else /// @todo: print usage if flag is shitfull
+	else
 		ft_usage();
 	return (0);
 }
