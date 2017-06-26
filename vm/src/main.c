@@ -59,6 +59,18 @@ static void		read_flags(t_data *data, char **av, int ar, int *i)
 			ft_usage(data); // if flag invalid
 		}
 	}
+	else if (!ft_strcmp("-v", av[*i]))
+	{
+		if (data->visual_flag == 0)
+		{
+			++(*i);
+			data->visual_flag = 1;
+		}
+		else
+		{
+			ft_usage(data);
+		}
+	}
 	else
 	{
 		ft_usage(data); // if flag invalid

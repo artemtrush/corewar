@@ -21,4 +21,5 @@ void		init_data(t_data *data)
 	data->cycle_to_die = CYCLE_TO_DIE;
 	data->players = NULL;
 	data->processes = NULL;
+	data->visual_flag = 0;
 }

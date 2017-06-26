@@ -39,7 +39,7 @@
 
 #include <stdio.h> // dell
 
-#define	USAGE "usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...\n"
+#define	USAGE "usage: ./corewar [-v] [-dump nbr_cycles] [[-n number] champion1.cor] ...\n"
 
 
 typedef unsigned char uchar;
@@ -60,7 +60,7 @@ typedef struct	s_proc // to do
 
 typedef struct	s_player
 {
-	uchar			player_id; // -1 -2 -3 -4
+	int				player_id; // -1 -2 -3 -4
 	char			alive;
 	char 			*name;//[PROG_NAME_LENGTH + 1];
 	uint			prog_size;
@@ -84,6 +84,7 @@ typedef struct	s_data
 	// t_asml		asml[16];
 	t_player	*players;//4 max
 	t_proc		*processes;
+	int			visual_flag;
 }				t_data;
 
 
