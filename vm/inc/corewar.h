@@ -76,6 +76,7 @@ typedef struct	s_data
 {
 	int			dump_arg; //		init to -2
 	uchar		*map;//[MEM_SIZE + 1];
+	uchar		*color; // which player this byte belongs to
 	uint		cycle;
 	int			cycle_to_die;
 	uint		checks;
