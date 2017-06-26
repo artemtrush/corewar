@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochayche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 09:35:52 by ochayche          #+#    #+#             */
-/*   Updated: 2016/12/01 09:35:54 by ochayche         ###   ########.fr       */
+/*   Created: 2017/03/04 13:28:59 by ochayche          #+#    #+#             */
+/*   Updated: 2017/03/04 13:29:02 by ochayche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_strmap(char const *s, char (*f)(char))
+static void		aux(int n, int b, char *ans, int *p)
 {
-	size_t		i;
-	size_t		len;
-	char		*str;
+	char	base[] = "0123456789abcde";
 
-	if (!s || !f)
+	if (n <= -b || b <= n)
+		aux(n / b, b, ans, p);
+	ans[(*p)++] = base[ft_abs(n % b)];
+}
+
+char			*ft_itoa_base(int value, int base)
+{
+	char	*ans;
+	int		p;
+
+	if (base < 2 || 16 < base
+		|| !(ans = (char *)malloc(sizeof(char) * 35)))
 		return (NULL);
-	i = 0;
-	len = ft_strlen(s);
-	str = (char*)malloc(sizeof(char) * (len + 1));
-	if (str)
-	{
-		while (s[i] != '\0')
-		{
-			str[i] = f(s[i]);
-			i++;
-		}
-		str[i] = '\0';
-		return (str);
-	}
-	return (NULL);
+	p = 0;
+	if (base == 10 && value < 0)
+		ans[p++] = '-';
+	aux(value, base, ans, &p);
+	ans[p] = '\0';
+	return (ans);
 }

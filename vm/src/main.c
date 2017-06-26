@@ -12,22 +12,25 @@
 
 #include "corewar.h"
 
-static void	ft_usage(void)
+static void		ft_usage(t_data *data)
 {
 	ft_printf(USAGE);
+	//TODO free the malloced players if any
 	exit(1);
 }
 
-static void		read_dump_arg(t_data *data, char *av)
+static void		read_dump_arg(t_data *data, char *str)
 {	
-	if (av && data->dump_arg == -2)
+	if (str && data->dump_arg == -2)
 	{
-		if ((data->dump_arg = ft_atoi_ptv(av)) == -1)
-			ft_usage();
+		if ((data->dump_arg = ft_atoi_ptv(str)) == -1)
+		{
+			ft_usage(data);
+		}
 	}
 	else
 	{
-		ft_usage();
+		ft_usage(data);
 	}
 }
 
@@ -36,24 +39,35 @@ static void		read_dump_arg(t_data *data, char *av)
 **	read $flags_arguments followed by $valid_position
 */
 
-void		read_flags(t_data *data, char **av, int ar, int *i)
+static void		read_flags(t_data *data, char **av, int ar, int *i)
 {
 	if (!ft_strcmp("-dump", av[*i])) // read -dump flag + dump_arg
 	{
-		read_dump_arg(data, av[++(*i)]);
+		++(*i);
+		read_dump_arg(data, av[*i]);
 	}
-	else if (('1' < av[*i][1] && av[*i][1] < '4') && (av[*i][2] == '\0'))
+	else if (!ft_strcmp("-n", av[*i]))
 	{
-		read_player(data, av[*i], ft_atoi(av[*i]));
-		//read_player(data, av[*i], ft_atoi(av[++(*i)])); how we should read [-n number]?
+		++(*i);
+		if (av[*i] && ('1' <= av[*i][0] && av[*i][0] <= '4') && (av[*i][1] == '\0'))
+		{
+			++(*i);
+			read_player(data, av[*i], ft_atoi(av[(*i) - 1]));
+		}
+		else
+		{
+			ft_usage(data); // if flag invalid
+		}
 	}
 	else
-		ft_usage(); // if flag shitfull
+	{
+		ft_usage(data); // if flag invalid
+	}
 }
 
-void		read_args(t_data *data, char **av, int ar)
+static void		read_args(t_data *data, char **av, int ar)
 {
-	int		i;
+	int			i;
 
 	i = 1;
 	while (i < ar)
@@ -63,21 +77,32 @@ void		read_args(t_data *data, char **av, int ar)
 			read_flags(data, av, ar, &i);
 		}
 		else
+		{
 			read_player(data, av[i], -1); //
+		}
 		++i;
 	}
+	//TODO sort linked list of players
 }
 
-int			main(int ar, char **av)
+int				main(int argc, char **argv)
 {
-	t_data data;
-
-	if (ar > 1)
+	t_data		data;
+	
+	if (argc > 1)
 	{
 		init_data(&data);
-		read_args(&data, av, ar);
+		read_args(&data, argv, argc);
+		//TODOcreate linked list of processes
+		// if (data.players == NULL || data.processes == NULL)  //TODO if struct with players is null, give usage
+		// {
+		// 	ft_usage(&data);
+		// }
+		start(&data);
 	}
 	else
-		ft_usage();
+	{
+		ft_usage(&data);
+	}
 	return (0);
 }

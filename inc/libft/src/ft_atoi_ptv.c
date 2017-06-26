@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "libft.h"
 
 int			ft_atoi_ptv(char *str)
 {
@@ -28,5 +28,5 @@ int			ft_atoi_ptv(char *str)
 		res = res * 10 + str[i] - '0';
 		++i;
 	}
-	return (res);
+	return (str[i] == '\0') ? (res) : (-1);
 }

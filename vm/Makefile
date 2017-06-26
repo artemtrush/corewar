@@ -39,7 +39,8 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
 SRC_NAME =			main.c		\
 					destruct.c	\
 					init_data.c \
-					read_player.c
+					read_player.c \
+					start.c
 # add .c file ---->
 
 ################################################################################
@@ -92,4 +93,4 @@ lite_clean:
 rew: lite_clean $(NAME);
 	
 r:	$(NAME)
-	./$(NAME) -dump
+	./$(NAME) ../test/zork.cor

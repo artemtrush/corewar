@@ -39,55 +39,58 @@
 
 #include <stdio.h> // dell
 
-#define	USAGE "usage: ./corewar [-dump nbr_cycles] [-n number] champion1.cor] ...\n"
+#define	USAGE "usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...\n"
 
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
 
 
-typedef struct	s_proc //to do
+typedef struct	s_proc // to do
 {
-	short		player;
-
-
-	
-	struct s_proc *next;
+	uint			pc;//karetka;
+	uint			last_live;//kak budet rabotat`??
+	int				cycles_to_exec; //izna4alno -1
+	int				reg[REG_NUMBER];
+	int				carry;
+	struct s_proc	*next;
 }				t_proc;
-
-//		last burn -> first steap
+//		last born -> first step
 
 
 typedef struct	s_player
 {
-	int			player; 	// -1 -2 -3 -4
-	char 		*name;
-	uint  		size;
-	char 		*comment;
-	char 		*byte_code;
-	int 		koretka;	// init to 0;
-}				t_player;
-
-
+	uchar			player_id; // -1 -2 -3 -4
+	char			alive;
+	char 			*name;//[PROG_NAME_LENGTH + 1];
+	uint			prog_size;
+	char 			*comment;//[COMMENT_LENGTH + 1];
+	uint			last_live;
+	uint			lives_in_curr;
+	uchar			*byte_code;
+	struct s_player	*next;
+}					t_player;
 
 
 typedef struct	s_data
 {
 	int			dump_arg; //		init to -2
-	uchar		map[MEM_SIZE + 1];
-	uint		processes; //placeholder
+	uchar		*map;//[MEM_SIZE + 1];
 	uint		cycle;
-	uint		cycle_to_die;
+	int			cycle_to_die;
 	uint		checks;
-	t_player	**players;
+	uint		num_of_proc;
+	// t_asml		asml[16];
+	t_player	*players;//4 max
+	t_proc		*processes;
 }				t_data;
-
-
-
 
 
 void			init_data(t_data *data);
 void			destruct(t_data *data);
 void			read_player(t_data *data, char *av, int n);
+void			start(t_data *data);
+
+
 
 
