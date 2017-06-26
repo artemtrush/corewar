@@ -187,7 +187,7 @@ t_player	*malloc_player_node(int n)
 	{
 		return (NULL);
 	}
-	tmp->player_id = -n;//????
+	tmp->player_id = n - 1;
 	tmp->alive = 0;
 	tmp->name = NULL;
 	tmp->prog_size = 0;
@@ -224,7 +224,6 @@ void	read_player(t_data *data, char *str, int n)
 		//free everything in the node
 		//free everything in the list of players
 		exit(1);
-		; // TODO destruct all players
 	}
 	else
 	{
