@@ -91,7 +91,7 @@ void			initialize_visited(t_player *node, int visited[])
 	{
 		if (node->player_id != -1)
 		{
-			visited[player_id] = 1;
+			visited[node->player_id] = 1;
 		}
 		node = node->next;
 	}
