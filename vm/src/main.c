@@ -77,6 +77,74 @@ static void		read_flags(t_data *data, char **av, int ar, int *i)
 	}
 }
 
+void			initialize_visited(t_player *node, int visited[])
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		visited[i] = 0;
+		++i;
+	}
+	while (node != NULL)
+	{
+		if (node->player_id != -1)
+		{
+			visited[player_id] = 1;
+		}
+		node = node->next;
+	}
+}
+
+void			providing_player_id(t_player *node, int visited[])
+{
+	int i;
+
+	while (node != NULL)
+	{
+		if (node->player_id == -1)
+		{
+			i = 0;
+			while (i < 4)
+			{
+				if (visited[i] == 0)
+				{
+					node->player_id = i;
+					visited[i] = 1;
+					break ;
+				}
+				++i;
+			}
+
+		}
+		node = node->next;
+	}
+}
+
+// void			sort_list(t_data *data)
+// {
+// 	t_player *tmp1;
+
+// 	tmp1 = data->players;
+// 	while (tmp1 != NULL)
+// 	{
+// 		tmp1 = tmp1->next;
+// 	}
+// }
+
+void			sort_players(t_data *data)
+{
+	int			visited[4];
+	
+	initialize_visited(data->players, visited);
+	providing_player_id(data->players, visited);
+	// sort_list(data);
+	//providing real player id;
+
+
+}
+
 static void		read_args(t_data *data, char **av, int ar)
 {
 	int			i;
@@ -90,11 +158,12 @@ static void		read_args(t_data *data, char **av, int ar)
 		}
 		else
 		{
-			read_player(data, av[i], -1); //
+			read_player(data, av[i], 0); //
 		}
 		++i;
 	}
 	//TODO sort linked list of players
+	sort_players(data);
 }
 
 int				main(int argc, char **argv)
