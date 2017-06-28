@@ -199,7 +199,10 @@ int				main(int argc, char **argv)
 		// {
 		// 	ft_usage(&data);
 		// }
-		start(&data);
+		if (data.visual_flag == 1)
+		{
+			start(&data);
+		}
 	}
 	else
 	{
