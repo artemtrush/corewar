@@ -48,6 +48,7 @@ typedef unsigned int uint;
 
 typedef struct	s_proc // to do
 {
+	uint			id;
 	uint			pc;//karetka;
 	uint			last_live;//kak budet rabotat`??
 	int				cycles_to_exec; //izna4alno -1
