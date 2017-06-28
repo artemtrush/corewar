@@ -121,15 +121,36 @@ void			providing_player_id(t_player *node, int visited[])
 	}
 }
 
-// void			sort_list(t_data *data)
+// void            sort_list(t_data *data)
 // {
-// 	t_player *tmp1;
+//     t_player *tmp1;
+//     int i;
+//     int flag;
+//     t_player *temp;
 
-// 	tmp1 = data->players;
-// 	while (tmp1 != NULL)
-// 	{
-// 		tmp1 = tmp1->next;
-// 	}
+//     i = 0;
+//     tmp1 = data->players;
+//     while (i < 3 && tmp1 != NULL && tmp1->next != NULL)//TODO max players - 1
+//     {
+//         flag = 0;
+//         if (tmp1->player_id > tmp1->next->player_id)
+//         {    
+//             if (i == 0)
+//             {
+//                 data->players = tmp1->next;
+//             }
+//             flag = 1;
+//             temp = tmp1;
+//             tmp1 = tmp1->next;
+//             tmp1->next = temp;
+//             //swap them;
+//         }
+//         if (flag == 0)
+//         {
+//             tmp1 = tmp1->next;
+//         }
+//         ++i;
+//     }
 // }
 
 void			sort_players(t_data *data)
