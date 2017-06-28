@@ -63,7 +63,6 @@ static void		read_flags(t_data *data, char **av, int ar, int *i)
 	{
 		if (data->visual_flag == 0)
 		{
-			++(*i);
 			data->visual_flag = 1;
 		}
 		else
