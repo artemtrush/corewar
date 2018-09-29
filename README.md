@@ -1,2 +1,2 @@
 # corewar
-kek
+corewar
